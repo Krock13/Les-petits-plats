@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<link href="./style.css" rel="stylesheet" type="text/css" />
+		<meta charset="utf-8" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope&display=swap" rel="stylesheet" />
+		<title>Les petits plats</title>
+	</head>
+	<body>
+		<header class="header">
+			<img src="./assets/icons/Logo.png" alt="Logo" class="logo" />
+			<div class="header-container">
+				<h1>
+					Cherchez parmi plus de 1500 recettes <br />
+					du quotidien, simples et délicieuses
+				</h1>
+				<form action="/rechercher" method="get">
+					<div class="search-container">
+						<input type="text" name="q" placeholder="Rechercher une recette, un ingredient, ..." />
+						<button class="search-button" type="submit"></button>
+					</div>
+				</form>
+			</div>
+		</header>
+		<main id="main"></main>
+		<script src="./.js" type="module"></script>
+	</body>
+</html>
