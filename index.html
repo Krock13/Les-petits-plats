@@ -18,13 +18,40 @@
 				</h1>
 				<form action="/rechercher" method="get">
 					<div class="search-container">
-						<input type="text" name="q" placeholder="Rechercher une recette, un ingredient, ..." />
+						<input
+							id="searchInput"
+							type="text"
+							name="q"
+							placeholder="Rechercher une recette, un ingredient, ..."
+						/>
+						<div id="clearSearch" class="clear-search"></div>
 						<button class="search-button" type="submit"></button>
 					</div>
 				</form>
 			</div>
 		</header>
-		<main id="main"></main>
-		<script src="./.js" type="module"></script>
+		<main id="main">
+			<div class="search-filters">
+				<div id="ingredients-container" class="container-filter">
+					<button class="dropdown-toggle initial-button" type="button" id="ingredientsDropdown">
+						Ingrédients<img src="./assets/icons/arrow.svg" class="arrow-down" alt="Flèche vers le bas" />
+					</button>
+				</div>
+				<div id="appliance-container" class="container-filter">
+					<button class="dropdown-toggle initial-button" type="button" id="applianceDropdown">
+						Appareils<img src="./assets/icons/arrow.svg" class="arrow-down" alt="Flèche vers le bas" />
+					</button>
+				</div>
+				<div id="ustensils-container" class="container-filter">
+					<button class="dropdown-toggle initial-button" type="button" id="ustensilsDropdown">
+						Ustensiles<img src="./assets/icons/arrow.svg" class="arrow-down" alt="Flèche vers le bas" />
+					</button>
+				</div>
+			</div>
+			<div id="selectionContainer" class="selectionContainer"></div>
+			<p class="countContainer"><span id="recipeCount"></span> recettes</p>
+			<div id="gallery-container" class="gallery-container"></div>
+		</main>
+		<script src="./scripts/pages/index.js" type="module"></script>
 	</body>
 </html>
