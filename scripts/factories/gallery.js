@@ -5,10 +5,9 @@ export function galleryFactory(data) {
 	const picture = `./assets/photos/${image}`;
 
 	/**
-
-	* Returns the DOM structure for the recipe card.
-	* @returns {HTMLElement} The recipe card DOM element.
-	*/
+	 * Returns the DOM structure for the recipe card.
+	 * @returns {HTMLElement} The recipe card DOM element.
+	 */
 
 	function getRecipeCardDOM() {
 		const article = document.createElement('article');
