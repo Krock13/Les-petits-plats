@@ -1,5 +1,6 @@
 import { recipes } from '../../data/recipes.js';
 import { resetList } from '../utils/clearSearch.js';
+import { globalSearch } from '../utils/search.js';
 
 const selectionContainer = document.getElementById('selectionContainer');
 
@@ -12,6 +13,7 @@ const selectionContainer = document.getElementById('selectionContainer');
  */
 
 export function generateDropdownList(buttonId, containerId, labelText, dataKey) {
+	const searchInputId = dataKey;
 	const selectedItems = new Set();
 
 	const button = document.getElementById(buttonId);
@@ -151,6 +153,7 @@ export function generateDropdownList(buttonId, containerId, labelText, dataKey) 
 				span.className = 'item-selected';
 				span.textContent = selectedItem;
 				selectionContainer.appendChild(span);
+				globalSearch(selectedItem, searchInputId);
 
 				const cross = document.createElement('img');
 				cross.src = './assets/icons/cross-black.svg';
