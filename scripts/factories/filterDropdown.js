@@ -1,6 +1,6 @@
 import { recipes } from '../../data/recipes.js';
 import { resetList } from '../utils/clearSearch.js';
-import { globalSearch } from '../utils/search.js';
+import { globalSearch, removeSearch } from '../utils/search.js';
 
 const selectionContainer = document.getElementById('selectionContainer');
 
@@ -162,6 +162,7 @@ export function generateDropdownList(buttonId, containerId, labelText, dataKey) 
 				span.appendChild(cross);
 
 				cross.addEventListener('click', () => {
+					removeSearch(selectedItem);
 					selectedItems.delete(selectedItem);
 					span.remove();
 				});
