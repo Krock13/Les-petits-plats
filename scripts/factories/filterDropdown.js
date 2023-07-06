@@ -1,8 +1,5 @@
-import { recipes } from '../../data/recipes.js';
-import { resetList } from '../utils/clearSearch.js';
 import { globalSearch, removeSearch } from '../utils/search.js';
-
-const selectionContainer = document.getElementById('selectionContainer');
+import { filterList } from '../utils/search.js';
 
 /**
  * Generates a dropdown list based on the specified parameters.
@@ -11,6 +8,8 @@ const selectionContainer = document.getElementById('selectionContainer');
  * @param {string} labelText -  The label text for the dropdown list.
  * @param {string} dataKey -  The key of the data to use for generating the dropdown options.
  */
+
+const selectionContainer = document.getElementById('selectionContainer');
 
 export function generateDropdownList(buttonId, containerId, labelText, dataKey) {
 	const searchInputId = dataKey;
@@ -96,12 +95,16 @@ export function generateDropdownList(buttonId, containerId, labelText, dataKey) 
 		clearSearch.addEventListener('click', () => {
 			searchInput.value = '';
 			clearSearch.classList.remove('active');
-			resetList(list);
+			list.querySelectorAll('li').forEach((item) => {
+				item.style.display = 'block';
+			});
 		});
 
 		searchItem.appendChild(searchInput);
 		searchItem.appendChild(clearSearch);
 		list.appendChild(searchItem);
+
+		const recipes = filterList();
 
 		// Collect unique items from recipes data
 		recipes.forEach((recipe) => {

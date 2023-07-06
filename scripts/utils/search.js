@@ -64,34 +64,28 @@ function ingredientsSearch(searchTerm) {
 
 	// Filter recipes and keep only those containing the required ingredient
 	recipesToDisplay = recipesToDisplay.filter((recipe) => {
-		return recipe.ingredients.some((ingredient) =>
-			ingredient.ingredient.toLowerCase().includes(lowercaseSearchTerm),
-		);
+		return recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(lowercaseSearchTerm));
 	});
 }
 
 function applianceSearch(searchTerm) {
 	const lowercaseSearchTerm = searchTerm.toLowerCase();
 
-	removedRecipes[searchTerm] = recipesToDisplay.filter((recipe) => {
-		return recipe.appliance.toLowerCase() !== lowercaseSearchTerm;
-	});
+	removedRecipes[searchTerm] = recipesToDisplay.filter(({ appliance }) => appliance.toLowerCase() !== lowercaseSearchTerm);
 
-	recipesToDisplay = recipesToDisplay.filter((recipe) => {
-		return recipe.appliance.toLowerCase() === lowercaseSearchTerm;
-	});
+	recipesToDisplay = recipesToDisplay.filter(({ appliance }) => appliance.toLowerCase() === lowercaseSearchTerm);
 }
 
 function ustensilsSearch(searchTerm) {
 	const lowercaseSearchTerm = searchTerm.toLowerCase();
 
-	removedRecipes[searchTerm] = recipesToDisplay.filter((recipe) => {
-		return recipe.ustensils.toLowerCase() !== lowercaseSearchTerm;
-	});
+	removedRecipes[searchTerm] = recipesToDisplay.filter(({ ustensils }) =>
+		ustensils.every((utensil) => utensil.toLowerCase() !== lowercaseSearchTerm),
+	);
 
-	recipesToDisplay = recipesToDisplay.filter((recipe) => {
-		return recipe.ustensils.toLowerCase() === lowercaseSearchTerm;
-	});
+	recipesToDisplay = recipesToDisplay.filter(({ ustensils }) =>
+		ustensils.some((utensil) => utensil.toLowerCase() === lowercaseSearchTerm),
+	);
 }
 
 let searches = [];
@@ -181,4 +175,8 @@ export function handleClearSearch() {
 	}
 
 	globalSearch('clear', 'searchInput');
+}
+
+export function filterList() {
+	return recipesToDisplay;
 }
