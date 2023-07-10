@@ -110,8 +110,6 @@ export function globalSearch(searchTerm, id) {
 		searches.push({ term: searchTerm, inputId: id });
 	}
 
-	console.log(searches);
-
 	// Process all searches
 	searches.forEach((search) => {
 		switch (search.inputId) {
@@ -134,8 +132,6 @@ export function globalSearch(searchTerm, id) {
 
 	recipesCount(recipesToDisplay);
 	renderRecipes(recipesToDisplay);
-	console.log('removedRecipes', removedRecipes);
-	console.log('recipesToDisplay', recipesToDisplay);
 }
 
 export function removeSearch(searchTerm) {

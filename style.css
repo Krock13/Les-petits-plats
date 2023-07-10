@@ -361,3 +361,10 @@ input {
 	text-align: center;
 	background: var(--yellow);
 }
+
+.notFound {
+	grid-column: 2/3;
+	grid-row: 1;
+	text-align: center;
+	font-weight: bold;
+}
