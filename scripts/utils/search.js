@@ -16,7 +16,6 @@ function recipesCount() {
 
 // Principal search function
 function principalSearch(searchTerm) {
-	console.time('Functional programming');
 	const lowercaseSearchTerm = searchTerm.toLowerCase();
 
 	recipesToDisplay = recipes.filter((recipe) => {
@@ -37,7 +36,6 @@ function principalSearch(searchTerm) {
 			return false; // No match, remove from recipesToDisplay
 		}
 	});
-	console.timeEnd('Functional programming');
 }
 
 function ingredientsSearch(searchTerm) {
