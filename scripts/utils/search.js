@@ -121,8 +121,6 @@ export function globalSearch(searchTerm, id) {
 
 	recipesCount(recipesToDisplay);
 	renderRecipes(recipesToDisplay);
-	console.log(recipesToDisplay);
-	console.log(removedRecipes);
 }
 
 export function removeSearch(searchTerm) {
