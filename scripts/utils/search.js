@@ -16,39 +16,26 @@ function recipesCount() {
 
 // Principal search function
 function principalSearch(searchTerm) {
-	for (let i = 0; i < recipesToDisplay.length; i++) {
-		const recipe = recipesToDisplay[i];
+	const lowercaseSearchTerm = searchTerm.toLowerCase();
+
+	recipesToDisplay = recipes.filter((recipe) => {
 		const recipeTitle = recipe.name.toLowerCase();
 		const recipeDescription = recipe.description.toLowerCase();
-		const recipeIngredients = [];
+		const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredient.toLowerCase());
 
-		for (let j = 0; j < recipe.ingredients.length; j++) {
-			const ingredient = recipe.ingredients[j];
-			recipeIngredients.push(ingredient.ingredient.toLowerCase());
-		}
+		const matchesTitleOrDescription =
+			recipeTitle.includes(lowercaseSearchTerm) || recipeDescription.includes(lowercaseSearchTerm);
 
-		let shouldDisplay = false;
+		const matchesIngredient = recipeIngredients.some((ingredient) => ingredient.includes(lowercaseSearchTerm));
 
-		// Check if search term matches recipe title or description
-		if (recipeTitle.includes(searchTerm.toLowerCase()) || recipeDescription.includes(searchTerm.toLowerCase())) {
-			shouldDisplay = true;
+		if (matchesTitleOrDescription || matchesIngredient) {
+			return true; // Match found, include in recipesToDisplay
 		} else {
-			// Check if search term matches any recipe ingredient
-			for (let j = 0; j < recipeIngredients.length; j++) {
-				const ingredient = recipeIngredients[j];
-				if (ingredient.includes(searchTerm.toLowerCase())) {
-					shouldDisplay = true;
-					break;
-				}
-			}
+			removedRecipes[lowercaseSearchTerm] = removedRecipes[lowercaseSearchTerm] || [];
+			removedRecipes[lowercaseSearchTerm].push(recipe);
+			return false; // No match, remove from recipesToDisplay
 		}
-
-		// Remove recipe if it should not be displayed
-		if (!shouldDisplay) {
-			recipesToDisplay.splice(i, 1);
-			i--;
-		}
-	}
+	});
 }
 
 function ingredientsSearch(searchTerm) {
@@ -132,6 +119,8 @@ export function globalSearch(searchTerm, id) {
 
 	recipesCount(recipesToDisplay);
 	renderRecipes(recipesToDisplay);
+	console.log(recipesToDisplay);
+	console.log(removedRecipes);
 }
 
 export function removeSearch(searchTerm) {
