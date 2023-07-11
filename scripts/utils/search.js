@@ -16,7 +16,6 @@ function recipesCount() {
 
 // Principal search function
 function principalSearch(searchTerm) {
-	console.time('Native loops');
 	for (let i = 0; i < recipesToDisplay.length; i++) {
 		const recipe = recipesToDisplay[i];
 		const recipeTitle = recipe.name.toLowerCase();
@@ -50,7 +49,6 @@ function principalSearch(searchTerm) {
 			i--;
 		}
 	}
-	console.timeEnd('Native loops');
 }
 
 function ingredientsSearch(searchTerm) {
